@@ -294,7 +294,18 @@ def findBookbyISBN(catalog, bookisbn, recursive=True):
         el libro
     """
     # TODO implementar la mascara para la busqueda binaria (parte 2)
-    pass
+    
+    
+    x = None
+    
+    sorted_list = sortBooks(catalog)
+    print(catalog)
+    for book in sorted_list:
+        if int(book["isbn13"]) == bookisbn:
+            x = catalog
+    return recursiveSearchBookByISBN(catalog, bookisbn)
+    
+    
 
 
 def averageBookRatings(catalog, recursive=True):
@@ -311,7 +322,7 @@ def averageBookRatings(catalog, recursive=True):
     """
     # TODO implementar la mascara para calcular el promedio (parte 2)
     #  si recursive es True, llama la funcion recursiva
-    pass
+
 
 
 def filterBooksByRating(catalog, low, high, recursive=True):
@@ -347,7 +358,11 @@ def recursiveSearchBookByISBN(catalog, bookisbn):
         lista de libros
     """
     # TODO implementar la mascara de la busqueda recursiva (parte 2)
-    pass
+    books = catalog["books"]
+    indice = searchBookByISBN(books, bookisbn, 0, lt.size(books) - 1)
+    result =  lt.getElement(books, indice)
+    return result
+    
 
 
 def searchBookByISBN(books, bookisbn, low, high):
@@ -365,7 +380,23 @@ def searchBookByISBN(books, bookisbn, low, high):
         int: indice del libro en la lista, -1 si no lo encuentra
     """
     # TODO implementar recursivamente binary search (parte 2)
-    pass
+     
+    if high >= low:
+        mid = low + (high - low) // 2
+
+        if lt.getElement(books,mid)["isbn13"] == bookisbn:
+            return mid
+            
+
+        elif lt.getElement(books,mid)["isbn13"] > bookisbn:
+            return searchBookByISBN(books, bookisbn, low, mid - 1)
+            
+            
+        else:
+            return searchBookByISBN(books, bookisbn, mid + 1, high)
+    else:
+           
+        return -1
 
 
 def iterativeSearchBookByISBN(catalog, bookid):
@@ -382,7 +413,14 @@ def iterativeSearchBookByISBN(catalog, bookid):
         lista de libros
     """
     # TODO implementacion iterativa del binary search (parte 2)
-    pass
+    pos = 0
+    x = None
+    for book in lt.iterator(catalog):
+        if int(book["isbn13"]) == bookid:
+            x = lt.getElement(catalog, pos) 
+        pos = pos+1
+        return x 
+    
 
 
 # funciones para calcular estadisticas

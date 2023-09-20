@@ -33,7 +33,7 @@ This repository is part of the data structure and algorithms (#EDA) teaching fra
 The students edit this section to add their names, Uniandes emails, and specify which project functionality of the project they will implement.
 
 1. Edward Camilo Sanchez Novoa <e.sanchezn@uniandes.edu.co>, 202113020.
-2. Sebastian Ruiz <s.ruizj@uniandes.edu.co>, 202013511.
+
 
 [Back to top](#sample-sorts)
 
